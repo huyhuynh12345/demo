@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #a5f5e3;
+  color: #4a7f9c;
+}
+
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+.container {
+  display: flex;
+  gap: 200px;
+}
+
+/* Nút chung */
+.btn {
+  padding: 20px 40px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Nút "không" hover chạy hình vuông */
+.btn.ko:hover {
+  animation: squareRun 2s linear infinite;
+}
+@keyframes squareRun {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(200px, 0); }
+  50%  { transform: translate(200px, 200px); }
+  75%  { transform: translate(0, 200px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Checkbox ẩn để điều khiển */
+#toggle {
+  display: none;
+}
+
+/* Nút "Có" bình thường */
+label.co {
+  background: #3498db;
+}
+
+/* Khi click "Có" => nút phóng to giữa màn hình */
+#toggle:checked + .container .co {
+  background: #2ecc71;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  z-index: 2;
+}
+
+/* Thông điệp chúc mừng */
+.message {
+  display: none;
+  font-size: 60px;
+  font-weight: bold;
+  color: #e74c3c;
+  position: fixed;
+  top: 20%;
+  text-align: center;
+  width: 100%;
+}
+
+/* Khi checked thì hiện thông điệp */
+#toggle:checked ~ .message {
+  display: block;
+  animation: popIn 1s ease forwards;
+}
+
+/* Hiệu ứng hiện chữ */
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+</style>
+</head>
+<body>
+  <h1>Mai đánh cầu không 5-7 ?</h1>
+
+  <!-- Checkbox hack -->
+  <input type="checkbox" id="toggle">
+
+  <div class="container">
+    <button class="btn ko">Không</button>
+    <!-- Nút "Có" là label -->
+    <label for="toggle" class="btn co">Có</label>
+  </div>
+
+  <!-- Thông điệp -->
+  <div class="message">🎉 Thật chăm chỉ - 10 đ 🎉</div>
+</body>
+</html>
